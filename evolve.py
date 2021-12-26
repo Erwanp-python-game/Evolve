@@ -3890,8 +3890,11 @@ while q==0:
 		
 		if showcreature==1:
 			im=pygame.image.load("frise.png")
-			for k in range(0,len(listeyear)+1):
-				x=int(k*1400/(len(listeyear)+1))
+			# for k in range(0,len(listeyear)+1):
+				# x=int(k*1400/(len(listeyear)+1))
+				# pygame.draw.line(im,(255,0,0),(x,50),(x,100),4)
+			for k in range(0,min(10,len(listeyear))):
+				x=int(k*1400/(10))
 				pygame.draw.line(im,(255,0,0),(x,50),(x,100),4)
 			pygame.image.save(im,"frise2.png")	
 			font = pygame.font.Font('freesansbold.ttf', 18)
@@ -4052,11 +4055,12 @@ while q==0:
 				r = glReadPixels(0,0,1400,1400,   GL_RGB,GL_UNSIGNED_BYTE)
 				pygame.display.flip()
 				saveim(r,Espe)
-			
+			scrollf=0
 			while showcreature==1:
 				
 				#angle=(angle+5)%360
 				#print(angle)
+				
 				
 				for event in pygame.event.get():
 					KEY=pygame.key.get_pressed()
@@ -4069,6 +4073,13 @@ while q==0:
 						pygame.mixer.music.load(choice(playlist))
 						if musicplayed==1:
 							pygame.mixer.music.play()
+					if event.type==MOUSEBUTTONUP:
+							if event.button==5:
+								scrollf=scrollf+1
+								#print(scrollf)
+							if event.button==4:
+								scrollf=scrollf-1
+								#print(scrollf)
 				
 				if clic2[0]==1 and mous2[1]<669:
 					if decal==0:
@@ -4088,15 +4099,16 @@ while q==0:
 				if abs(mous2[0]-696)<693 and abs(mous2[1]-682)<13 and clic2[0]==1 and Espe=='monEspece':
 					
 					
-					i=int((len(listeyear)+1)*mous2[0]/1400)
-					
-					if i!=len(listeyear):
+					#i=int((len(listeyear)+1)*mous2[0]/1400)
+					i=int((10)*mous2[0]/1400)+1
+					if i<min(10,len(listeyear)):
 						im=pygame.image.load("frise.png")
-						for k in range(0,len(listeyear)+1):
-							x=int(k*1400/(len(listeyear)+1))
+						for k in range(0,min(10,len(listeyear))):
+							x=int(k*1400/(10))
 							pygame.draw.line(im,(255,0,0),(x,50),(x,100),2)
-						x=int(i*1400/(len(listeyear)+1))
-						pygame.draw.rect(im,(155,209,136,44),(x,50,int(1400/(len(listeyear)+1)),50))
+						x=int((i-1)*1400/(10))
+						pygame.draw.rect(im,(155,209,136,44),(x,50,int(1400/(10)),50))
+						i=i+min(max(len(listeyear)-10-scrollf,0),len(listeyear)-11)
 						age=(listeyear[i]*541/5000)-541
 						period=ListeEre[-1]
 						for fg in DateEre:
@@ -4169,10 +4181,11 @@ while q==0:
 						showFILM(30,ex,Ms[3],Ve[3],Ja[3],str(listeyear[i]))
 						pygame.display.flip()
 					else:
+						scrollf=0
 						im=pygame.image.load("frise.png")
-						for k in range(0,len(listeyear)+1):
-							x=int(k*1400/(len(listeyear)+1))
-							pygame.draw.line(im,(255,0,0),(x,50),(x,100),4)
+						for k in range(0,min(10,len(listeyear))):
+							x=int(k*1400/(10))
+							pygame.draw.line(im,(255,0,0),(x,50),(x,100),2)
 						pygame.image.save(im,"frise2.png")	
 						Bv=read('bouchever')
 						Ms=read(RandomEspece.at[Espe,'machsupTYPE'])
