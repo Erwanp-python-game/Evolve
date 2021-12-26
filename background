@@ -1,0 +1,22 @@
+glEnable(%GL_TEXTURE_2D)
+glColor4ub(255,255,255,255)
+GL_BindTexture(%GL_TEXTURE_2D, gP.mt.texture)
+
+glMatrixMode(%GL_PROJECTION)
+glPushMatrix()
+glLoadIdentity()
+
+glOrtho(-gP.glRatio, gP.glRatio, -1, 1, -1, 1)
+
+glDisable(%GL_DEPTH_TEST)
+glBegin(%GL_QUADS)
+glTexCoord2i(0, 0): glVertex2i(-1,-1)
+glTexCoord2i(1, 0): glVertex2i( 1,-1)
+glTexCoord2i(1, 1): glVertex2i( 1, 1)
+glTexCoord2i(0, 1): glVertex2i(-1, 1)
+glEnd()
+
+glBindTexture(%GL_TEXTURE_2D, 0)
+glEnable(%GL_DEPTH_TEST)
+glPopMatrix()
+glMatrixMode(%GL_MODELVIEW)
