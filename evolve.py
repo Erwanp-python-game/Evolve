@@ -916,7 +916,8 @@ addTemp=0
 dicoContinent={}
 dicocosXcon={}
 dicosinXcon={}
-dicoYcon={}
+dicocosYcon={}
+dicosinYcon={}
 dicoNcon={}
 def angle_f(x1,y1,x2,y2):
 	if x2!=x1:
@@ -1166,7 +1167,8 @@ if partie_créée==1:
 	dicoContinent={}
 	dicocosXcon={}
 	dicosinXcon={}
-	dicoYcon={}
+	dicocosYcon={}
+	dicosinYcon={}
 	dicoNcon={}
 	for i in range(0,140):
 		for j in range(0,70):
@@ -1209,13 +1211,15 @@ if partie_créée==1:
 					dicoContinent[continentM[i][j]]=nomc
 					dicocosXcon[continentM[i][j]]=cos(2*pi*i/140)
 					dicosinXcon[continentM[i][j]]=sin(2*pi*i/140)
-					dicoYcon[continentM[i][j]]=[j]
+					dicocosYcon[continentM[i][j]]=cos(2*pi*j/70)
+					dicosinYcon[continentM[i][j]]=sin(2*pi*j/70)
 					dicoNcon[continentM[i][j]]=1
 			else:
 				if continentM[i][j]!=(0,0,0):
 					dicocosXcon[continentM[i][j]]=dicocosXcon[continentM[i][j]]+cos(2*pi*i/140)
 					dicosinXcon[continentM[i][j]]=dicosinXcon[continentM[i][j]]+sin(2*pi*i/140)
-					dicoYcon[continentM[i][j]].append(j)
+					dicocosYcon[continentM[i][j]]=dicocosYcon[continentM[i][j]]+cos(2*pi*j/70)
+					dicosinYcon[continentM[i][j]]=dicosinYcon[continentM[i][j]]+sin(2*pi*j/70)
 					dicoNcon[continentM[i][j]]=dicoNcon[continentM[i][j]]+1
 			
 	pointF=[randint(0,140),randint(0,70),randint(-180,180),randint(1,2)]
@@ -1255,10 +1259,11 @@ if partie_créée==1:
 	
 # jusque là pour la creation d'un monde
 dicoXcon={}
+dicoYcon={}
 dicoVcon={}
 for i in dicoContinent.keys():
 	dicoXcon[i]=int(140*(angle_f(0,0,dicocosXcon[i]/dicoNcon[i],dicosinXcon[i]/dicoNcon[i])%(2*pi))/(2*pi))
-	dicoYcon[i]=np.median(dicoYcon[i])# en fait faire comme dicoXcon
+	dicoYcon[i]=int(70*(angle_f(0,0,dicocosYcon[i]/dicoNcon[i],dicosinYcon[i]/dicoNcon[i])%(2*pi))/(2*pi))
 	vcx=randint(-1,1)
 	vcy=randint(-1,1)
 	while abs(vcx)+abs(vcy)==0:
@@ -1556,7 +1561,7 @@ def erupt_volcan(x,y):
 
 
 def moveCont(col,V):
-	global continentM,humidite,temperature,cases,dicoXcon,dicoVcon,especes,xs,ys,dicocosXcon,dicosinXcon,dicoYcon,dicoNcon
+	global continentM,humidite,temperature,cases,dicoXcon,dicoVcon,especes,xs,ys,dicocosXcon,dicosinXcon,dicosinYcon,dicocosXcon,dicoNcon
 	moveurC=np.empty((140,70),dtype=object)
 	for i in range(0,140):
 		for j in range(0,70):
@@ -1668,7 +1673,8 @@ def moveCont(col,V):
 	for i in dicoContinent.keys():
 		dicocosXcon[i]=0
 		dicosinXcon[i]=0
-		dicoYcon[i]=[]
+		dicocosYcon[i]=0
+		dicosinYcon[i]=0
 		dicoNcon[i]=0
 		
 	for i in range(0,140):
@@ -1676,12 +1682,13 @@ def moveCont(col,V):
 			if continentM[i][j]!=(0,0,0):
 				dicocosXcon[continentM[i][j]]=dicocosXcon[continentM[i][j]]+cos(2*pi*i/140)
 				dicosinXcon[continentM[i][j]]=dicosinXcon[continentM[i][j]]+sin(2*pi*i/140)
-				dicoYcon[continentM[i][j]].append(j)
+				dicocosYcon[continentM[i][j]]=dicocosYcon[continentM[i][j]]+cos(2*pi*j/70)
+				dicosinYcon[continentM[i][j]]=dicosinYcon[continentM[i][j]]+sin(2*pi*j/70)
 				dicoNcon[continentM[i][j]]=dicoNcon[continentM[i][j]]+1
 	for i in dicoContinent.keys():
 		if dicoNcon[i]!=0:
 			dicoXcon[i]=int(140*(angle_f(0,0,dicocosXcon[i]/dicoNcon[i],dicosinXcon[i]/dicoNcon[i])%(2*pi))/(2*pi))
-			dicoYcon[i]=np.median(dicoYcon[i])
+			dicoYcon[i]=int(70*(angle_f(0,0,dicocosYcon[i]/dicoNcon[i],dicosinYcon[i]/dicoNcon[i])%(2*pi))/(2*pi))
 				
 	# rebondir les uns sur les autres pas trop
 	# svg vitesse cont date mvt et meanhum et meant
