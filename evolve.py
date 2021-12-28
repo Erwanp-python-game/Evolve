@@ -364,6 +364,18 @@ DateEre=[541,485,443,419,358,299,252,201,145,66,56,34,23,5,2,0,-1]
 
 colorERE=[(18, 5, 216), (50, 174, 94), (4, 34, 141), (24, 129, 79), (233, 33, 48), (134, 168, 128), (191, 50, 79), (134, 35, 117), (192, 147, 8), (19, 89, 105), (31, 206, 121), (131, 13, 173), (140, 161, 77), (159, 108, 86), (149, 186, 56), (40, 123, 202), (192, 111, 87)]
 
+def Grad(c,age,period):
+	if period !='Futur':
+		pourcent=(-age-DateEre[ListeEre.index(period)])/(DateEre[ListeEre.index(period)+1]-DateEre[ListeEre.index(period)])
+		C=int(c[0]*(0.5+0.5*pourcent))
+		D=int(c[1]*(0.5+0.5*pourcent))
+		E=int(c[2]*(0.5+0.5*pourcent))
+		
+		return(C,D,E)
+		
+	else:
+		return c
+
 addy=0
 pygame.init()
 pygame.display.set_icon(pygame.image.load("small.png"))
@@ -3909,14 +3921,13 @@ while q==0:
 			ref=max(len(listeyear)-10,0)
 			for k in range(0,min(10,len(listeyear))):
 				x=int(k*1400/(10))
-				print('b')
 				age=(listeyear[ref+k]*541/5000)-541
 				period=ListeEre[-1]
 				for fg in DateEre:
 					if age<-fg:
 						period=ListeEre[DateEre.index(fg)-1]
 						break
-				pygame.draw.rect(im,colorERE[ListeEre.index(period)],(x,50,int(1400/(10)),50))
+				pygame.draw.rect(im,Grad(colorERE[ListeEre.index(period)],age,period),(x,50,int(1400/(10)),50))
 				pygame.draw.line(im,(255,0,0),(x,50),(x,100),2)
 				txt = font.render(period, True, (255,255,255))
 				im.blit(txt,(x,80))
@@ -4101,11 +4112,13 @@ while q==0:
 							pygame.mixer.music.play()
 					if event.type==MOUSEBUTTONUP:
 							if event.button==5:
-								scrollf=scrollf+1
-								change=1
+								if scrollf<len(listeyear)-10:
+									scrollf=scrollf+1
+									change=1
 							if event.button==4:
-								scrollf=scrollf-1
-								change=1
+								if scrollf>0:
+									scrollf=scrollf-1
+									change=1
 				
 				if clic2[0]==1 and mous2[1]<669:
 					if decal==0:
@@ -4123,7 +4136,7 @@ while q==0:
 				if change==1 and Espe=='monEspece':
 					im=pygame.image.load("frise.png")
 					font = pygame.font.Font('freesansbold.ttf', 18)
-					ref=max(len(listeyear)-scrollf-10,0)
+					ref=min(max(len(listeyear)-scrollf-10,0),max(len(listeyear)-10,0))
 					for k in range(0,min(10,len(listeyear))):
 						x=int(k*1400/(10))
 						
@@ -4133,7 +4146,7 @@ while q==0:
 							if age<-fg:
 								period=ListeEre[DateEre.index(fg)-1]
 								break
-						pygame.draw.rect(im,colorERE[ListeEre.index(period)],(x,50,int(1400/(10)),50))
+						pygame.draw.rect(im,Grad(colorERE[ListeEre.index(period)],age,period),(x,50,int(1400/(10)),50))
 						pygame.draw.line(im,(255,0,0),(x,50),(x,100),2)
 						txt = font.render(period, True, (255,255,255))
 						im.blit(txt,(x,80))
@@ -4164,7 +4177,7 @@ while q==0:
 								if age<-fg:
 									period=ListeEre[DateEre.index(fg)-1]
 									break
-							pygame.draw.rect(im,colorERE[ListeEre.index(period)],(x,50,int(1400/(10)),50))
+							pygame.draw.rect(im,Grad(colorERE[ListeEre.index(period)],age,period),(x,50,int(1400/(10)),50))
 							pygame.draw.line(im,(255,0,0),(x,50),(x,100),2)
 							txt = font.render(period, True, (255,255,255))
 							im.blit(txt,(x,80))
@@ -4243,21 +4256,19 @@ while q==0:
 						showFILM(30,ex,Ms[3],Ve[3],Ja[3],str(listeyear[i]))
 						pygame.display.flip()
 					else:
-						print(Espe)
 						scrollf=0
 						im=pygame.image.load("frise.png")
 						font = pygame.font.Font('freesansbold.ttf', 18)
 						ref=max(len(listeyear)-10,0)
 						for k in range(0,min(10,len(listeyear))):
 							x=int(k*1400/(10))
-							print(listeyear,k,ref)
 							age=(listeyear[ref+k]*541/5000)-541
 							period=ListeEre[-1]
 							for fg in DateEre:
 								if age<-fg:
 									period=ListeEre[DateEre.index(fg)-1]
 									break
-							pygame.draw.rect(im,colorERE[ListeEre.index(period)],(x,50,int(1400/(10)),50))
+							pygame.draw.rect(im,Grad(colorERE[ListeEre.index(period)],age,period),(x,50,int(1400/(10)),50))
 							pygame.draw.line(im,(255,0,0),(x,50),(x,100),2)
 							txt = font.render(period, True, (255,255,255))
 							im.blit(txt,(x,80))
