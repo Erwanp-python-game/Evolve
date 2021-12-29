@@ -409,7 +409,10 @@ continentM=np.empty((140,70),dtype=object)
 for i in range(0,140):
 	for j in range(0,70):
 		continentM[i][j]=(0,0,0)
-
+legendT=pygame.image.load("legendT.png").convert_alpha()
+legendH=pygame.image.load("legendH.png").convert_alpha()
+legend0=pygame.image.load("legend0.png").convert_alpha()
+legendtree=pygame.image.load("legendtree.png").convert_alpha()
 nbgraine=0
 tropw=pygame.image.load("tropicalwater.png").convert_alpha()
 coldw=pygame.image.load("coldwater.png").convert_alpha()
@@ -4659,6 +4662,7 @@ while q==0:
 							showworld=0
 				
 				fenetre.blit(closet,(0,0))
+				fenetre.blit(legendtree,(1200,600))
 				pygame.display.flip()
 			showtree=0
 			pygame.key.set_repeat()
@@ -4671,22 +4675,27 @@ while q==0:
 				text=font.render('global humidity : '+str(round(wrld[2],2)), True, (255,255,255))
 				fenetre.blit(text,(1200,20))
 				font = pygame.font.Font('freesansbold.ttf', 25)
+				fenetre.blit(legendH,(1200,600))
 			if showtemp==1:
 				font = pygame.font.Font('freesansbold.ttf', 14)
 				text=font.render('global temperature : '+str(round(wrld[1],2)), True, (255,255,255))
 				fenetre.blit(text,(1200,20))
 				font = pygame.font.Font('freesansbold.ttf', 25)
+				fenetre.blit(legendT,(1200,600))
+				
 			if showhum==0 and showtemp==0 and showCont==0:
 				font = pygame.font.Font('freesansbold.ttf', 14)
 				text=font.render('land percentage : '+str(round(wrld[0],2)), True, (0,0,0))
 				fenetre.blit(text,(1200,20))
 				font = pygame.font.Font('freesansbold.ttf', 25)
+				fenetre.blit(legend0,(1200,600))
 			for ki in range(0,len(Xl)):
 				if abs(mous[0]-Xl[ki]*10+2)<10 and abs(mous[1]-Yl[ki]*10+2)<10:
 					font = pygame.font.Font('freesansbold.ttf', 14)
 					text = font.render(RandomEspece.at[nomL[ki],'nominem'], True, (255,255,255))
 					fenetre.blit(text,(mous[0],mous[1]))
 					font = pygame.font.Font('freesansbold.ttf', 25)
+					
 			
 			for event in pygame.event.get():
 				KEY=pygame.key.get_pressed()
