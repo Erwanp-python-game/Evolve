@@ -410,10 +410,12 @@ for i in range(0,140):
 	for j in range(0,70):
 		continentM[i][j]=(0,0,0)
 tuto=pygame.image.load("tuto.png").convert_alpha()
+tutoF=pygame.image.load("tutoF.png").convert_alpha()
 legendT=pygame.image.load("legendT.png").convert_alpha()
 legendH=pygame.image.load("legendH.png").convert_alpha()
 legend0=pygame.image.load("legend0.png").convert_alpha()
 legendtree=pygame.image.load("legendtree.png").convert_alpha()
+
 nbgraine=0
 tropw=pygame.image.load("tropicalwater.png").convert_alpha()
 coldw=pygame.image.load("coldwater.png").convert_alpha()
@@ -1860,7 +1862,10 @@ marker=pygame.Surface((10,10),pygame.SRCALPHA, 32)
 vue=pygame.Surface((70,70),pygame.SRCALPHA, 32)
 tuto_step=0
 
-tutotext=['Welcome in Evolve, the goal of this game is to make your group of creatures survive and evolve in a constantly changing world. First you can name your creature. Evolve is a turn based game, each turn is a step in the time where your group of creature and its environment may change, you thus have to carefully guide your group to adapted biomes']
+tutotext=['Welcome in Evolve, the goal of this game is to make your group of creatures survive and evolve in a constantly changing world. First you can name your creature. Evolve is a turn based game, each turn is a step in the time where your group of creatures and its environment may change, you thus have to carefully guide your group to adapted biomes. Click on next.',
+'To survive you must keep your population high enough at each turn. Your population naturally grows if the case on which you move contains enough food and that you are well adapted to this environment. By moving your mouse above cases adjacent to your creature you can see if the population will grow. The case is highlighted in green if the population will rise and red else. Click on next.'
+,'As you are not adapted to any biome for now the adjacent cases are orange or red, do not worry, your creature will adapt to this sea biome quickly. Please click on an adjacent case to go to the next turn, you cannot stay on the same case two turns in a row. You can see that new cases have been revealed when you moved, exploration of the world is also important in Evolve. Click on next.'
+]
 
 def Tutoriel(t_step):
 	fenetre.blit(tuto,(350,400))
@@ -1877,6 +1882,8 @@ def Tutoriel(t_step):
 		if x+t.get_width()>600:
 			x=0
 			y=y+20
+	if t_step==1:
+		fenetre.blit(pygame.transform.flip(tutoF,1,0),(950,150))
 
 
 def menu():
@@ -1904,7 +1911,7 @@ def menu():
 	textRect = text.get_rect()
 	textRect.center = (1225, 155)
 	fenetre.blit(text,textRect)
-	if tuto_step<100:
+	if tuto_step<len(tutotext):
 		Tutoriel(tuto_step)
 
 def selector(x,y,specie):
@@ -3947,12 +3954,25 @@ while q==0:
 					if clic[0]==1:
 						showtree=1
 			
-			if tuto_step<100:
+			if tuto_step<len(tutotext):
 				if abs(mous[0]-615-350)<75:
 					if abs(mous[1]-435)<15:
 						pygame.mouse.set_cursor(*pygame.cursors.diamond)
 						if clic[0]==1:
-							tuto_step=100
+							tuto_step=len(tutotext)
+				if abs(mous[0]-615-350)<75:
+					if abs(mous[1]-665)<15:
+						pygame.mouse.set_cursor(*pygame.cursors.diamond)
+						if clic[0]==1:
+							tuto_step+=1
+							pygame.time.wait(300)
+				if abs(mous[0]-85-350)<75:
+					if abs(mous[1]-665)<15:
+						pygame.mouse.set_cursor(*pygame.cursors.diamond)
+						if clic[0]==1:
+							tuto_step=max(tuto_step-1,0)
+							pygame.time.wait(300)
+			
 		
 		if showcreature==1:
 			im=pygame.image.load("frise.png")
