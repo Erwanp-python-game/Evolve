@@ -409,6 +409,7 @@ continentM=np.empty((140,70),dtype=object)
 for i in range(0,140):
 	for j in range(0,70):
 		continentM[i][j]=(0,0,0)
+tuto=pygame.image.load("tuto.png").convert_alpha()
 legendT=pygame.image.load("legendT.png").convert_alpha()
 legendH=pygame.image.load("legendH.png").convert_alpha()
 legend0=pygame.image.load("legend0.png").convert_alpha()
@@ -1857,6 +1858,27 @@ point=pygame.Surface((10,10),pygame.SRCALPHA, 32)
 marker2=pygame.Surface((12,12),pygame.SRCALPHA, 32)
 marker=pygame.Surface((10,10),pygame.SRCALPHA, 32)
 vue=pygame.Surface((70,70),pygame.SRCALPHA, 32)
+tuto_step=0
+
+tutotext=['Welcome in Evolve, the goal of this game is to make your group of creatures survive and evolve in a constantly changing world. First you can name your creature. Evolve is a turn based game, each turn is a step in the time where your group of creature and its environment may change, you thus have to carefully guide your group to adapted biomes']
+
+def Tutoriel(t_step):
+	fenetre.blit(tuto,(350,400))
+	line=tutotext[t_step].split()
+	x=0
+	y=0
+	font = pygame.font.Font('freesansbold.ttf', 18)
+	for j,i in enumerate(line):
+		text = font.render(i, True, (0,0,0))
+		fenetre.blit(text,(x+350+45,y+400+90))
+		x=x+text.get_width()
+		x=x+8
+		t=font.render(line[(j+1)%len(line)], True, (0,0,0))
+		if x+t.get_width()>600:
+			x=0
+			y=y+20
+
+
 def menu():
 	fenetre.blit(pano,(0,0))
 	fenetre.blit(pano,(1050,0))
@@ -1882,6 +1904,8 @@ def menu():
 	textRect = text.get_rect()
 	textRect.center = (1225, 155)
 	fenetre.blit(text,textRect)
+	if tuto_step<100:
+		Tutoriel(tuto_step)
 
 def selector(x,y,specie):
 	BIO=caracterebiome.loc[cases[x][y]]
@@ -3027,7 +3051,7 @@ TIME=500+(1-CURSE)*150+1
 mission_en_cours=mission(0)
 numero_mission=1
 createMAP()
-brdG=np.full((140,70),1)
+brdG=np.full((140,70),0)
 while cases[xs][ys]!='water' or temperature2[xs][ys]>18 or temperature2[xs][ys]<0:
 	xs=randint(0,139)
 	ys=randint(0,69)
@@ -3123,10 +3147,11 @@ def sauvegarde(name):
 	pickle.dump(CURSE, f)
 	pickle.dump(BIGSCORE, f)
 	pickle.dump(ex, f)
+	pickle.dump(tuto_step, f)
 	f.close()
 	return
 def chargement(name):
-	global ex,BIGSCORE,CURSE,xmov,ymov,flash1,dicoVcon,LISTEmeanhum,LISTEmeant,tremb_date, volcanMAP,meteorMAP,volcan_date,meteor_date,rayon,rayonm,xv_,yv_,x_,y_,flash, dicoContinent,dicoNcon,dicoXcon,dicoYcon,nomL,listnom,listeyear,svgmuteur1,svgmuteur2,zoom,yD,xD,Xl,Yl,listC,Ns,RandomEspece,StockaddT,TIME,Tm,Hm,ageglaciaire,tour,cycle,Dageglaciaire,Drechauff,alivecreature,brdG,cases,continentM,dicoImage,especes,humidite,humidite2,temperature,temperature2,listedevolcans,machD,machDz,mission_en_cours,nom,nourriture,numero_mission,pT,pause1,pause2,pointC,pointF,pointH,pointS,rechauffement,xs,ys,yeuxP
+	global tuto_step,ex,BIGSCORE,CURSE,xmov,ymov,flash1,dicoVcon,LISTEmeanhum,LISTEmeant,tremb_date, volcanMAP,meteorMAP,volcan_date,meteor_date,rayon,rayonm,xv_,yv_,x_,y_,flash, dicoContinent,dicoNcon,dicoXcon,dicoYcon,nomL,listnom,listeyear,svgmuteur1,svgmuteur2,zoom,yD,xD,Xl,Yl,listC,Ns,RandomEspece,StockaddT,TIME,Tm,Hm,ageglaciaire,tour,cycle,Dageglaciaire,Drechauff,alivecreature,brdG,cases,continentM,dicoImage,especes,humidite,humidite2,temperature,temperature2,listedevolcans,machD,machDz,mission_en_cours,nom,nourriture,numero_mission,pT,pause1,pause2,pointC,pointF,pointH,pointS,rechauffement,xs,ys,yeuxP
 	zoom=1
 	yD=0
 	xD=0
@@ -3200,6 +3225,7 @@ def chargement(name):
 	CURSE=pickle.load(f)
 	BIGSCORE=pickle.load(f)
 	ex=pickle.load(f)
+	tuto_step=pickle.load(f)
 	pygame.display.set_caption("Evolve in "+nom)
 	Xl=[]
 	Yl=[]
@@ -3246,7 +3272,10 @@ for j in range(0,70):
 	if j<35 and j>0:
 		LISTEmeant.append(max(meant,LISTEmeant[-1]))
 	if j>34:
-		LISTEmeant.append(min(meant,LISTEmeant[-1]))	
+		LISTEmeant.append(min(meant,LISTEmeant[-1]))
+		
+
+
 
 Ltemp=[]
 Lhum=[]
@@ -3917,6 +3946,13 @@ while q==0:
 					pygame.mouse.set_cursor(*pygame.cursors.diamond)
 					if clic[0]==1:
 						showtree=1
+			
+			if tuto_step<100:
+				if abs(mous[0]-615-350)<75:
+					if abs(mous[1]-435)<15:
+						pygame.mouse.set_cursor(*pygame.cursors.diamond)
+						if clic[0]==1:
+							tuto_step=100
 		
 		if showcreature==1:
 			im=pygame.image.load("frise.png")
