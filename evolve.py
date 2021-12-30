@@ -1863,12 +1863,12 @@ vue=pygame.Surface((70,70),pygame.SRCALPHA, 32)
 tuto_step=0
 
 tutotext=['Welcome in Evolve, the goal of this game is to make your group of creatures survive and evolve in a constantly changing world. First you can name your creature. Evolve is a turn based game, each turn is a step in the time where your group of creatures and its environment may change, you thus have to carefully guide your group to adapted biomes. Click on next.',
-'To survive you must keep your population high enough at each turn. Your population naturally grows if the square on which you move contains enough food and that you are well adapted to this environment. By moving your mouse above squares adjacent to your creature you can see if the population will grow. The square is highlighted in green if the population will rise and red else. You can also see the biomes that are the most similar to the square in term of adaptation. Click on next.'
+'To survive you must keep your population high enough at each turn. Your population naturally grows if the square on which you move contains enough food and if you are well adapted to this environment. By moving your mouse above squares adjacent to your creature you can see if the population will grow. The square is highlighted in green if the population will rise and red else. You can also see the biomes that are the most similar to the square in term of adaptation. Click on next.'
 ,'As you are not adapted to any biome for now the adjacent squares are orange or red, do not worry, your creature will adapt to this sea biome quickly. Please click on an adjacent square to go to the next turn, you cannot stay on the same square two turns in a row. You can see that new squares have been revealed when you moved, exploration of the world is also important in Evolve. Click on next.'
-,'By clicking on world map button you can see where your creature is in the world and how much you explored and maybe plan futur moves. The heat map and humidity map buttons permits to see the different storms modificating the climate and anticipate biome changes, check these buttons. Click on next.'
-,'The last key point is the time before mass extinction. In the bottom right corner you can see mission that are affected to you, by succeeding in this mission you can repel and avoid the time at which your population will suddenly drop, you can refuse a mission with the red cross but you will loose some time before mass extinction. Click on next.'
+,'By clicking on world map button you can see where your creature is in the world and how much you explored and maybe plan futur moves. The heat map and humidity map buttons permit to see the different storms modificating the climate and anticipate biome changes, check these buttons. Click on next.'
+,'The last key point is the time before mass extinction. In the bottom right hand corner you can see missions that are affected to you, by succeeding in these missions you can repel and avoid the time at which your population will suddenly drop, you can refuse a mission with the red cross but you will loose some time before mass extinction. Click on next.'
 ,'One type of mission is to move to a new continent, for this you can check the tectonic map to find the given continent. The other types could be to find a given biome, adapt to a given biome by staying during several turns on similar squares, or split your group. Click on next.'
-,'To split your group you must reach a population of 700 individuals and click on the button on the right. This will create another group that will evolve on its own and explore for you, you can check how your phylogenetic tree looks like by clicking on evolution tree button. Click on next.'
+,'To split your group you must reach a population of 700 individuals and click on the button on the right. This will create another group that will evolve on its own and explore for you, you can check how your phylogenetic tree looks like by clicking on the evolution tree button. Click on next.'
 ,'You can see your creature in details by clicking on show creature. Try to reach the present times and create a whole biodiversity! Enjoy and beware of volcanoes and meteors ;). Click on next.'
 ]
 
@@ -1887,8 +1887,12 @@ def Tutoriel(t_step):
 		if x+t.get_width()>600:
 			x=0
 			y=y+20
+	
+		
+
 	if t_step==1:
 		fenetre.blit(pygame.transform.flip(tutoF,1,0),(950,130))
+		
 	if t_step==3:
 		fenetre.blit(tutoF,(350,330))
 	if t_step==4:
@@ -3411,6 +3415,8 @@ while q==0:
 			fenetre.blit(pygame.image.load('flug.png'),(350,0))
 			fenetre.blit(pygame.image.load('boutonpresent.png'),(550,300))
 			pygame.display.flip()
+		sont=pygame.mixer.Sound("tutoS1.ogg")
+		sont.play()
 		pygame.time.wait(100)
 	print(tour)
 	tour=tour+1
@@ -3980,6 +3986,10 @@ while q==0:
 						if clic[0]==1:
 							tuto_step+=1
 							pygame.time.wait(300)
+							sont.stop()
+							if tuto_step<9:
+								sont=pygame.mixer.Sound("tutoS"+str(min(tuto_step+1,8))+".ogg")
+								sont.play()
 				if abs(mous[0]-85-350)<75:
 					if abs(mous[1]-665)<15:
 						pygame.mouse.set_cursor(*pygame.cursors.diamond)
@@ -4892,6 +4902,8 @@ while q==0:
 			text=font.render('turn '+str(tour)+'   '+str(round(age,2))+' Ma, period: '+period, True, (255,255,255))
 			fenetre.blit(text,(360,20))
 			if tour==5000 and BIGSCORE2==0:
+				sont=pygame.mixer.Sound("rock.ogg")
+				sont.play()
 				fenetre.blit(pygame.image.load('boutonfutur.png'),(550,300))
 				BIGSCORE2=((np.sum(brdG)//500)+BIGSCORE+tour//10)*CURSE+1
 				if CURSE!=0:
