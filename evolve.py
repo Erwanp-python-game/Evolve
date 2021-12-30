@@ -3987,7 +3987,7 @@ while q==0:
 							tuto_step+=1
 							pygame.time.wait(300)
 							sont.stop()
-							if tuto_step<9:
+							if tuto_step<8:
 								sont=pygame.mixer.Sound("tutoS"+str(min(tuto_step+1,8))+".ogg")
 								sont.play()
 				if abs(mous[0]-85-350)<75:
