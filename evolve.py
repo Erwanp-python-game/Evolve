@@ -1863,8 +1863,13 @@ vue=pygame.Surface((70,70),pygame.SRCALPHA, 32)
 tuto_step=0
 
 tutotext=['Welcome in Evolve, the goal of this game is to make your group of creatures survive and evolve in a constantly changing world. First you can name your creature. Evolve is a turn based game, each turn is a step in the time where your group of creatures and its environment may change, you thus have to carefully guide your group to adapted biomes. Click on next.',
-'To survive you must keep your population high enough at each turn. Your population naturally grows if the case on which you move contains enough food and that you are well adapted to this environment. By moving your mouse above cases adjacent to your creature you can see if the population will grow. The case is highlighted in green if the population will rise and red else. Click on next.'
-,'As you are not adapted to any biome for now the adjacent cases are orange or red, do not worry, your creature will adapt to this sea biome quickly. Please click on an adjacent case to go to the next turn, you cannot stay on the same case two turns in a row. You can see that new cases have been revealed when you moved, exploration of the world is also important in Evolve. Click on next.'
+'To survive you must keep your population high enough at each turn. Your population naturally grows if the square on which you move contains enough food and that you are well adapted to this environment. By moving your mouse above squares adjacent to your creature you can see if the population will grow. The square is highlighted in green if the population will rise and red else. You can also see the biomes that are the most similar to the square in term of adaptation. Click on next.'
+,'As you are not adapted to any biome for now the adjacent squares are orange or red, do not worry, your creature will adapt to this sea biome quickly. Please click on an adjacent square to go to the next turn, you cannot stay on the same square two turns in a row. You can see that new squares have been revealed when you moved, exploration of the world is also important in Evolve. Click on next.'
+,'By clicking on world map button you can see where your creature is in the world and how much you explored and maybe plan futur moves. The heat map and humidity map buttons permits to see the different storms modificating the climate and anticipate biome changes, check these buttons. Click on next.'
+,'The last key point is the time before mass extinction. In the bottom right corner you can see mission that are affected to you, by succeeding in this mission you can repel and avoid the time at which your population will suddenly drop, you can refuse a mission with the red cross but you will loose some time before mass extinction. Click on next.'
+,'One type of mission is to move to a new continent, for this you can check the tectonic map to find the given continent. The other types could be to find a given biome, adapt to a given biome by staying during several turns on similar squares, or split your group. Click on next.'
+,'To split your group you must reach a population of 700 individuals and click on the button on the right. This will create another group that will evolve on its own and explore for you, you can check how your phylogenetic tree looks like by clicking on evolution tree button. Click on next.'
+,'You can see your creature in details by clicking on show creature. Try to reach the present times and create a whole biodiversity! Enjoy and beware of volcanoes and meteors ;). Click on next.'
 ]
 
 def Tutoriel(t_step):
@@ -1883,8 +1888,17 @@ def Tutoriel(t_step):
 			x=0
 			y=y+20
 	if t_step==1:
-		fenetre.blit(pygame.transform.flip(tutoF,1,0),(950,150))
-
+		fenetre.blit(pygame.transform.flip(tutoF,1,0),(950,130))
+	if t_step==3:
+		fenetre.blit(tutoF,(350,330))
+	if t_step==4:
+		fenetre.blit(tutoF,(850,20))
+	if t_step==6:
+		fenetre.blit(pygame.transform.flip(tutoF,1,0),(950,230))
+		fenetre.blit(pygame.transform.flip(tutoF,1,0),(950,330))
+	if t_step==7:
+		fenetre.blit(pygame.transform.flip(tutoF,1,0),(950,30))
+		
 
 def menu():
 	fenetre.blit(pano,(0,0))
@@ -4858,7 +4872,7 @@ while q==0:
 		if showworld==0 and showcreature!=1 and showtree!=1:# see showworld
 			menu()
 			if CURSE!=0:
-				text=font.render('turns before massive extinction: '+str(TIME), True, (max(min(255-(TIME-(500+(1-CURSE)*150)),255),0),max(min(255+(TIME-(500+(1-CURSE)*150)),255),0),0))
+				text=font.render('turns before mass extinction: '+str(TIME), True, (max(min(255-(TIME-(500+(1-CURSE)*150)),255),0),max(min(255+(TIME-(500+(1-CURSE)*150)),255),0),0))
 				fenetre.blit(text,(360,50))
 				text.get_width()
 				if text_addt[0]=='-':
