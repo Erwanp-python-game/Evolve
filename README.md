@@ -2,7 +2,7 @@
 
 Foobar is a Python library for dealing with word pluralization.
 
-![image](\Evolve_python\flug.png)
+![image](https://github.com/Erwanp-python-game/Evolve/tree/main/Evolve_python/flug.png)
 
 ## Installation
 
