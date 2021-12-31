@@ -3,6 +3,10 @@
 Foobar is a Python library for dealing with word pluralization.
 
 ![alt text](https://github.com/Erwanp-python-game/Evolve/tree/main/Evolve_python/flug.png)
+<p align="center">
+  <img src="https://github.com/Erwanp-python-game/Evolve/tree/main/Evolve_python/flug.png" width="350" title="hover text">
+  <img src="https://github.com/Erwanp-python-game/Evolve/tree/main/Evolve_python/flug.png" width="350" alt="accessibility text">
+</p>
 
 ## Installation
 
