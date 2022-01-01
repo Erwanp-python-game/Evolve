@@ -18,6 +18,8 @@ You can see your creature in details and how it changed during its evolution in 
   <img src="tree.png" width="500" title="hover text">
 </p>
 
+These sister species will appear in your evolution tree and breed as well.
+
 <p align="left">
   <img src="map.png" width="500" title="hover text">
 </p>
