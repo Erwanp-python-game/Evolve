@@ -1,10 +1,9 @@
 # Evolve
 
-Foobar is a Python library for dealing with word pluralization.
-
+Evolve is a turn based game where the goal is to make your group of creatures survive, each turn is a step in the time where your group of creatures and its environment may change, you thus have to carefully guide your group to adapted biomes.
 
 <p align="left">
-  <img src="Evolve_python/flug.png" width="500" title="hover text">
+  <img src="creature.png" width="500" title="hover text">
 </p>
 
 ## Installation
