@@ -49,7 +49,12 @@ and
 ```bash
 pip install OpenGL
 ```
-
+Once this is done you have all the packages necesseracy to run the game. You still need to download the files, for this first you have to download **git** [here](https://git-scm.com/downloads).
+And then go in the console **Anaconda prompt** navigate to where you want to put the game (desktop is good ^^) and type the command:
+```bash
+git clone https://github.com/Erwanp-python-game/Evolve.git
+```
+Now you have all the folders, you just have to go to the folder **Evolve_python** and then execute the file **evolve.py** with python. Feel free then to look at the code and modify it, enjoy !
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
