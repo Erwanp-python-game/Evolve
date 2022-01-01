@@ -6,6 +6,15 @@ Evolve is a turn based game where the goal is to make your group of creatures su
   <img src="creature.png" width="500" title="hover text">
 </p>
 
+<p align="left">
+  <img src="map.png" width="500" title="hover text">
+</p>
+
+<p align="left">
+  <img src="menu.png" width="500" title="hover text">
+</p>
+
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
