@@ -12,7 +12,7 @@ You have to choose at each turn where you want to send your group of creature an
   <img src="creature.png" width="500" title="hover text">
 </p>
 
-You can see your creature in details and how it changed during its evolution in a dedicated tab. You will obtain a unique creature in each game with its own history! Moreover you can split your group of creature leading to a speciation, sister species will roam your world and evolve on their own.
+You can see your creature in details and how it has changed during its evolution in a dedicated tab. You will obtain a unique creature in each game with its own history! Moreover you can split your group of creatures leading to a speciation, sister species will roam your world and evolve on their own.
 
 <p align="left">
   <img src="tree.png" width="500" title="hover text">
@@ -24,8 +24,8 @@ These sister species will appear in your evolution tree and breed as well.
   <img src="map.png" width="500" title="hover text">
 </p>
 
-The world in which you live is randomly generated in each game and is changing through time entering glaciations, heating periods meteors volcanoes and continental moves. Your creature can also be affected by local climate change due to storms.
-You can play in 3 difficulty modes with missions to comply or in free mode without. Try to reach present times and you will get your score according to the missions done and exploration of the world realised.
+The world in which you live is randomly generated in each game and is changing through time entering glaciations, heating periods, meteors, volcanoes, and continental moves. Your creature can also be affected by local climate change due to storms.
+You can play in 3 difficulty modes with missions to comply or in free mode without. Try to reach present times and you will get your score according to the missions done and exploration of the world.
 
 ## Installation
 
