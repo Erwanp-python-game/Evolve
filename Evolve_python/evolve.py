@@ -3980,6 +3980,7 @@ while q==0:
 						pygame.mouse.set_cursor(*pygame.cursors.diamond)
 						if clic[0]==1:
 							tuto_step=len(tutotext)
+							sont.stop()
 				if abs(mous[0]-615-350)<75:
 					if abs(mous[1]-665)<15:
 						pygame.mouse.set_cursor(*pygame.cursors.diamond)
