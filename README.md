@@ -1,18 +1,23 @@
 # Evolve
 
-Evolve is a turn based game where the goal is to make your group of creatures survive, each turn is a step in the time where your group of creatures and its environment may change, you thus have to carefully guide your group to adapted biomes.
+Evolve is a turn based game where the goal is to make your group of creatures survive and evolve, each turn is a step in the time where your group of creatures and its environment may change, you thus have to carefully guide your group to adapted biomes.
+
+<p align="left">
+  <img src="menu.png" width="500" title="hover text">
+</p>
+
+You have to choose at each turn where you want to send your group of creature and try to keep a population high enough to breed. Evolution of your creatures is guided by where you send them.
 
 <p align="left">
   <img src="creature.png" width="500" title="hover text">
 </p>
 
+You can see your creature in details and how it changed during its evolution in a dedicated tab.
+
 <p align="left">
   <img src="map.png" width="500" title="hover text">
 </p>
 
-<p align="left">
-  <img src="menu.png" width="500" title="hover text">
-</p>
 
 
 ## Installation
