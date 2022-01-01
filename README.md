@@ -38,6 +38,8 @@ Go to this dropbox [link](https://pip.pypa.io/en/stable/) and download the whole
 
 If you don't have Anaconda you first need to download it [here](https://www.anaconda.com/products/individual) choose the version compatible with your computer, this library include python, numpy and other useful packages.
 Once you have downloaded the file just install it with the recommended parameters.
+Then you need to install two libraries pygame that enable to build games in python and OpenGL to render 3D.
+For this you need to use the console, search for <Anaconda prompt> in your applications and open it.
 ```bash
 pip install foobar
 ```
