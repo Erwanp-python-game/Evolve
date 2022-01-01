@@ -29,31 +29,18 @@ You can play in 3 difficulty modes with missions to comply or in free mode witho
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+### If you don't want to bother with python
 
+Go to this dropbox [link](https://pip.pypa.io/en/stable/) and download the whole folder Evolve_exe then go in the folder dist inside and launch the application evolve.exe, it can take 2 or 3 minutes to launch so be patien ^^
+
+
+### If you want to play with the python code
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 ```bash
 pip install foobar
 ```
 
-## Usage
-
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
