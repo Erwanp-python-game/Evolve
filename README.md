@@ -31,12 +31,13 @@ You can play in 3 difficulty modes with missions to comply or in free mode witho
 
 ### If you don't want to bother with python
 
-Go to this dropbox [link](https://pip.pypa.io/en/stable/) and download the whole folder Evolve_exe then go in the folder dist inside and launch the application evolve.exe, it can take 2 or 3 minutes to launch so be patien ^^
+Go to this dropbox [link](https://pip.pypa.io/en/stable/) and download the whole folder Evolve_exe then go in the folder dist inside and launch the application evolve.exe, it can take 2 or 3 minutes to launch so be patient ^^
 
 
 ### If you want to play with the python code
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+If you don't have Anaconda you first need to download it [here](https://www.anaconda.com/products/individual) choose the version compatible with your computer, this library include python, numpy and other useful packages.
+Once you have downloaded the file just install it with the recommended parameters.
 ```bash
 pip install foobar
 ```
