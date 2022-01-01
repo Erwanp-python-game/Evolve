@@ -31,7 +31,7 @@ You can play in 3 difficulty modes with missions to comply or in free mode witho
 
 ### If you don't want to bother with python
 
-Go to this dropbox [link](https://pip.pypa.io/en/stable/) and download the whole folder **Evolve_exe** then go in the folder **dist** inside and launch the application **evolve.exe**, it can take 2 or 3 minutes to launch so be patient ^^
+Go to this dropbox [link](https://www.dropbox.com/sh/321uodm9fzu5qer/AADZPGY8xz3Sri0FVeSY4Clca?dl=0) and download the whole folder **Evolve_exe** then go in the folder **dist** inside and launch the application **evolve.exe**, it can take 2 or 3 minutes to launch so be patient ^^
 
 
 ### If you want to play with the python code
